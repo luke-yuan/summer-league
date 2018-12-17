@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{pgf-umlcd}
+\usepackage{pdflscape}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+
+\begin {tikzpicture}
+
+\begin {class}[text width=8 cm]{PlayerManagement}{-5, 2}
+\attribute{\textbf{private:}}
+\attribute{entry\textunderscore list\textunderscore: PlayerMap}
+\attribute{display\textunderscore entry\textunderscore and \textunderscore menu()}
+\attribute{execute\textunderscore command(commmand: char, done: bool)}
+
+\operation{\textbf{public:}}
+\operation{run()}
+\end {class}
+
+\begin {class}[text width=8 cm]{PlayerMap}{6,2}
+\attribute{\textbf{private:}}
+\attribute{all\textunderscore players\textunderscore: map$<$string, PlayerEntry$>$}
+\attribute{current\textunderscore entry\textunderscore: map$<$string, PlayerEntry$>$::iterator}
+\attribute{found\textunderscore players\textunderscore: map$<$string, PlayerEntry$>$}
+
+\operation{\textbf{public:}}
+\operation{read\textunderscore file(filename: string)}
+\operation{write\textunderscore file(filename: string)}
+\operation{display\textunderscore current\textunderscore entry()}
+\operation{display\textunderscore stats()}
+\operation{delete\textunderscore current\textunderscore entry()}
+\operation{move\textunderscore to\textunderscore next()}
+\operation{move\textunderscore to\textunderscore previous()}
+\operation{add()}
+\operation{edit()}
+\operation{search()}
+\operation{new\textunderscore season(year: int)}
+\operation{exit\textunderscore search()}
+\operation{in\textunderscore browse()}
+\end{class}
+
+
+\begin {class}[text width=8 cm]{PlayerEntry}{-5, -3}
+\attribute{\textbf{public:}}
+\attribute{PlayerMap()}
+\attribute{PlayerMap(first: string, last: string, year: int, paid: bool)}
+\attribute{first\textunderscore name: string}
+\attribute{last\textunderscore name: string}
+\attribute{year: int}
+\attribute{category()}
+\end {class}
+
+
+\composition{PlayerManagement}{}{}{PlayerMap}
+\composition{PlayerMap}{}{}{PlayerEntry}
+
+\end{tikzpicture}
+
+\end{landscape}
+
+\end{document}

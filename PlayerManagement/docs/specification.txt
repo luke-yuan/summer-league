@@ -1,0 +1,56 @@
+Soccer League Management System
+Version 1.0
+
+SPECIFICATION
+
+OVERVIEW
+A soccer league management system that contains players' information, specifically the name, year of birth, category, and registration status of each player. The user can browse through the players' information, add, edit, and delete players, search for players based on a variety of criteria and export the found lists of players.
+
+DETAILS
+The user is presented with one player's information at a time (sorted by last name), as well as the player's rank based on last name. Below the entry, a menu of commands is displayed. The command "Stats" is only available when the user is not in a search, and the command "Exit" is only available in the search view. Below the menu of commands, the user can input his/her desired operations for the program after the displayed text "command: ". The user types the the first character of a command, and the command executes. The command may prompt the user for more information.
+
+SAMPLE INTERFACE (BROWSE VIEW)
+
+John Smith
+2005
+U14
+paid
+7/10
+--------------------------------------------------
+edit      next    previous    output    search
+add     delete    Newseason     Stats     quit
+--------------------------------------------------
+
+SAMPLE INTERFACE (SEARCH VIEW)
+
+John Smith
+2005
+U14
+paid
+7/10
+--------------------------------------------------
+edit      next    previous    output    search
+search    add     delete      Exit      quit
+--------------------------------------------------
+
+COMMANDS
+
+edit: Prompts the user four times to find out which elements need to be changed. If user inputs blank, the respective field is not changed. Otherwise, the field is updated to the new specified value.
+
+next: Displays the next players' information.
+
+previous: Displays the previous players' information.
+
+output: Prints the current list of players to an external file. Prompts the user to input the path of the external file.
+
+search: Prompts the user five times to determine search criteria, asking for first name, last name, year of birth, category, and registration status, respectively. If the user inputs blank, the criteria will not include the specified field. After criteria entry, the program will find all players matching the specified criteria and the user will be able to browse through the list of found players.
+
+Stats: Displays the total amount of players who have paid, in total and for each category. (User needs to type capital S to use this command.)
+
+add: Adds a new player to the system. Prompts the user four times to determine the player's name, year of birth, category, and registration status.
+
+delete: Deletes the current selected player.
+
+reset: Starts a new season and deletes all existing players. Asks for confirmation before deletion.
+
+Exit: If the user is in the search view, this command exits the search view.

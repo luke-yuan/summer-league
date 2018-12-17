@@ -1,0 +1,119 @@
+Soccer League Management System
+Version 1.0
+
+DESIGN
+
+COMPONENT: class PlayerManagement
+
+Player management system. See program specification for details.
+
+Public method:
+
+o void run()
+    Runs the system.
+
+    Implementation: A loop that displays the current player and menu, and reads a command from the user and executes it. Delegates displaying to display_entry_and_menu.
+
+Private methods:
+
+o void display_entry_and_menu()
+    Self-explanatory.
+
+    Implementation: Entry printing is delegated to the PlayerMap object.
+
+o bool execute_command(char c, bool done)
+    Executes command c. If the program should exit, done is set to true.
+
+    Implementation: Execution of commands is delegated to PlayerMap object.
+
+Collaborator: PlayerMap
+
+COMPONENT: class PlayerMap
+
+Stores all the players' information for the player management system. Provides operations on the players' information. See specification notes for details on operations.
+
+Public methods:
+
+o PlayerMap()
+    Creates an empty map of the players and reads the players' information from players_file.
+
+o bool read_file(const std::string & filename)
+    Reads all players from filename and stores them to all_players_.
+
+o bool write_file(const std::string & filename)
+    Writes all the players information from all_players to filename.
+
+o void display_current_entry() const
+    Displays current player's information.
+
+    Implementation: Delegates PlayerEntry to display the player's information.
+
+o void add(const std::string & first_name, const std::string & last_name, int birth_year, int category, bool registration)
+    Adds a player specified by the parameters to the map to all_players. If in search view, update current_players accordingly.
+
+o void delete_current_entry()
+    Deletes player at current entry.
+
+o void move_to_next()
+    Moves current entry to the next entry. If current entry is at the end of the map, the current entry is updated to the first entry in the map.
+
+o void move_to_prev()
+    Move current entry to the previous entry. If current entry is at the beginning of the map, the current entry is updated to the last entry in the map.
+
+o bool search(const std::string & first_name, const std::string & last_name, int birth_year, int category, bool registration)
+    Sets the search parameters to the given criteria. Returns true if a player was found.
+
+o bool update_search_results()
+    Finds all players using the given criteria, and adds all found players to found_players. Returns true if at least one player was found.
+
+o void display_stats()
+    Displays the registration statistics of players. See specification file for details.
+
+o void reset()
+    Deletes all players' information in all_players.
+
+o void exit_search()
+    Exit search view, clears found_players_ and sets current_entry_ to the begin iterator of all_players_.
+
+o bool in_browse()
+    Returns if the program is in the browsing state or searching state.
+
+o bool output(const std::string & file)
+    Exports all_players to a specified file by the user, or found_players if user is in search view. Returns true if exporting succeeded.
+
+    Implementation: Delegates PlayerEntry to output each entry to file.
+
+Private attributes:
+o std::map<std::string, PlayerEntry> all_players_
+    Contains all players' information.
+
+o std::map<std::string, PlayerEntry> found_players_
+    Contains all found players, if any.
+
+o std::map<std::string, PlayerEntry>::iterator current_entry_
+    Contains the iterator of the PlayerEntry that the user is currently viewing. Could be an iterator of all_players_ or found_players_.
+
+Collaborator: PlayerEntry
+
+COMPONENT: class PlayerEntry
+
+Stores each player's information, and provides operations on each player's information.
+
+Public methods:
+
+o PlayerEntry()
+    Initializes a PlayerEntry object with empty values.
+
+o PlayerEntry(const std::string first_name, const std::string last_name, int birth_year, int category, bool registration)
+    Initializes a PlayerEntry object with specified values.
+
+o category()
+    Returns the computed category of the PlayerEntry object.
+
+Public attributes:
+
+o std::string first_name
+o std::string last_name
+o int year
+o bool paid
+    Stores the information of each PlayerEntry.

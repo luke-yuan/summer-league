@@ -1,0 +1,4 @@
+The program has three minor problems.
+1. Input validation generally works. Problems only occur when an integer is inputted, but immediately followed by non-integers, such as 10abc. Also, when a command is entered, only the first character is taken into account. For example, if the user enters 'abc', it is treated as 'a'.
+2. When the user attempts to perform a search when he/she is already in the search view and the second search fails to find any players, the user is sent back to the browse view. I thought of a potential fix for this scenario involving a temporary map of found players, but I thought it to be inefficient as this scenario would not occur often.
+3. The user could corrupt the players.txt file by manually editing it. I assumed this would not happen.
